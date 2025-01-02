@@ -1,10 +1,11 @@
-import { transporter } from './mailtrap.js'; // Import the transporter
+import { transporter, sender } from './mailtrap.js'; // Import the transporter
 import { VERIFICATION_EMAIL_TEMPLATE } from './emailTemplates.js';
 
 export const sendVerificationEmail = async (email, verificationToken) => {
+    console.log("Send Verification Email", email)
     try {
         const mailOptions = {
-            from: '"Your App" <noreply@yourapp.com>', // Sender address
+            from: sender, // Sender address
             to: email,                                // Recipient address
             subject: "Verify your email",
             html: VERIFICATION_EMAIL_TEMPLATE.replace("{verificationCode}", verificationToken),
